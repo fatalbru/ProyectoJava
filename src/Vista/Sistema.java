@@ -6,6 +6,8 @@ package Vista;
 
 import Modelo.Cliente;
 import Modelo.ClienteDao;
+import Modelo.Productos;
+import Modelo.ProductosDao;
 import Modelo.Proveedor;
 import Modelo.ProveedorDao;
 import javax.swing.JOptionPane;
@@ -26,6 +28,8 @@ public class Sistema extends javax.swing.JFrame {
     ClienteDao client = new ClienteDao();
     Proveedor pr=new Proveedor();
     ProveedorDao PrDao=new ProveedorDao();
+    Productos pro=new Productos();
+    ProductosDao proDao=new ProductosDao();
     DefaultTableModel modelo = new DefaultTableModel();
 
     public Sistema() {
@@ -793,6 +797,11 @@ public class Sistema extends javax.swing.JFrame {
         }
 
         btnGuardarPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
+        btnGuardarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarProActionPerformed(evt);
+            }
+        });
 
         btnEditarPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
 
@@ -1042,6 +1051,7 @@ public class Sistema extends javax.swing.JFrame {
             cl.setDireccion(txtDireccionCliente.getText());
             cl.setRazon(txtRazonCliente.getText());
             client.RegistrarCliente(cl);
+            JOptionPane.showMessageDialog(null,"Cliente Registrado");
             LimpiarTable();
             LimpiarCliente();
             ListarCliente();
@@ -1098,6 +1108,7 @@ public class Sistema extends javax.swing.JFrame {
                 cl.setRazon(txtRazonCliente.getText());
                 cl.setId(Integer.parseInt(txtIdCliente.getText()));
                 client.ModificarCliente(cl);
+                JOptionPane.showMessageDialog(null,"Cliente Modificado");
                 LimpiarTable();
                 LimpiarCliente();
                 ListarCliente();
@@ -1121,6 +1132,7 @@ public class Sistema extends javax.swing.JFrame {
             pr.setDireccion(txtDireccionProveedor.getText());
             pr.setRazon(txtRazonProveedor.getText());
             PrDao.RegistrarProveedor(pr);
+          JOptionPane.showMessageDialog(null,"Proveedor Registrado");
             LimpiarTable();
             ListarProveedor();
             LimpiarProveedor();
@@ -1182,6 +1194,7 @@ public class Sistema extends javax.swing.JFrame {
           pr.setRazon(txtRazonProveedor.getText());
           pr.setId(Integer.parseInt(txtIdProveedor.getText()));
           PrDao.ModificarProveedor(pr);
+          JOptionPane.showMessageDialog(null,"Proveedor Modificado");
           LimpiarTable();
           ListarProveedor();
           LimpiarProveedor();
@@ -1193,6 +1206,21 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         LimpiarProveedor();
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
+
+    private void btnGuardarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProActionPerformed
+        // TODO add your handling code here:
+        if(!"".equals(txtCodigoPro.getText()) || !"".equals(txtDesPro.getText()) || !"".equals(cbxProveedorPro.getSelectedItem()) ||!"".equals(txtCantPro.getText()) || !"".equals(txtPrecioPro.getText())){
+          pro.setCodigo(txtCodigoPro.getText());
+          pro.setNombre(txtDesPro.getText());
+          pro.setProveedor(cbxProveedorPro.getSelectedItem().toString());
+          pro.setStock(Integer.parseInt(txtCantPro.getText()));
+          pro.setPrecio(Double.parseDouble(txtPrecioPro.getText()));
+          proDao.RegistrarProductos(pro);
+          JOptionPane.showMessageDialog(null,"Producto Registrado");
+        }else{
+        JOptionPane.showMessageDialog(null,"Los campos estan vacios");
+        }
+    }//GEN-LAST:event_btnGuardarProActionPerformed
 
     /**
      * @param args the command line arguments
