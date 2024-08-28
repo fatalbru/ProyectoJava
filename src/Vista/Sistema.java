@@ -11,6 +11,7 @@ import Modelo.ProductosDao;
 import Modelo.Proveedor;
 import Modelo.ProveedorDao;
 import Reportes.Excel;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
@@ -318,6 +319,12 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
 
+        txtCodigoVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoVentaKeyPressed(evt);
+            }
+        });
+
         txtPrecioVenta.setEditable(false);
 
         TableVenta.setModel(new javax.swing.table.DefaultTableModel(
@@ -370,8 +377,8 @@ public class Sistema extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addComponent(txtCodigoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(59, 59, 59)
+                                .addComponent(txtCodigoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(txtDescripcionVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1329,6 +1336,30 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         Excel.reporte();
     }//GEN-LAST:event_btnExcelProActionPerformed
+
+    private void txtCodigoVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoVentaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(!"".equals(txtCodigoVenta.getText())){
+            String cod=txtCodigoVenta.getText();
+            pro = proDao.BuscarPro(cod);
+            if(pro.getNombre()!=null){
+            txtDescripcionVenta.setText(""+pro.getNombre());
+            txtPrecioVenta.setText(""+pro.getPrecio());
+            txtStockDisponible.setText(""+pro.getStock());
+            txtCantidadVenta.requestFocus();
+            }else{
+            txtDescripcionVenta.setText("");
+            txtPrecioVenta.setText("");
+            txtStockDisponible.setText("");
+            txtCodigoVenta.requestFocus();
+            }
+        }else{
+        JOptionPane.showMessageDialog(null,"Ingrese el codigo del producto");
+        txtCodigoVenta.requestFocus();
+        }
+        }
+    }//GEN-LAST:event_txtCodigoVentaKeyPressed
 
     /**
      * @param args the command line arguments
