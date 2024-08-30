@@ -198,9 +198,9 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCantidadVenta" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCantidadVenta" min="-2" pref="92" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtPrecioVenta" min="-2" pref="86" max="-2" attributes="0"/>
@@ -365,6 +365,9 @@
             <Component class="javax.swing.JTextField" name="txtDescripcionVenta">
             </Component>
             <Component class="javax.swing.JTextField" name="txtCantidadVenta">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCantidadVentaKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrecioVenta">
               <Properties>
