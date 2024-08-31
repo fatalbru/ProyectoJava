@@ -41,6 +41,7 @@ public class Sistema extends javax.swing.JFrame {
     VentaDao Vdao=new VentaDao();
     Detalle Dv=new Detalle();
     DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel tmp = new DefaultTableModel();
     int item;
     double Totalpagar=0.00;
     public Sistema() {
@@ -1408,7 +1409,7 @@ public class Sistema extends javax.swing.JFrame {
             int stock=Integer.parseInt(txtStockDisponible.getText());
             if(stock>=cant){
             item=item+1;
-            DefaultTableModel tmp = (DefaultTableModel) TableVenta.getModel();
+            tmp = (DefaultTableModel) TableVenta.getModel();
             for(int i=0;i<TableVenta.getRowCount();i++){
                 if(TableVenta.getValueAt(i, 1).equals(txtDescripcionVenta.getText())){
                 JOptionPane.showMessageDialog(null, "El producto ya esta registrado");
@@ -1474,6 +1475,9 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarVenta();
         RegistrarDetalle();
+        ActualizarStock();
+        LimpiarTableVenta();
+        LimpiarClienteventa();
     }//GEN-LAST:event_btnGenerarVentaActionPerformed
 
     /**
@@ -1685,5 +1689,28 @@ public class Sistema extends javax.swing.JFrame {
             Dv.setId(id);
             Vdao.RegistrarDetalle(Dv);
         }
+    }
+    private void ActualizarStock(){
+    for(int i=0;i<TableVenta.getRowCount();i++){
+        String cod=TableVenta.getValueAt(i, 0).toString();
+        int cant=Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
+        pro = proDao.BuscarPro(cod);
+        int StockActual=pro.getStock()-cant;
+        Vdao.ActualizarStock(StockActual, cod);
+    }
+    }
+    private void LimpiarTableVenta(){
+    tmp=(DefaultTableModel) TableVenta.getModel();
+    int fila=TableVenta.getRowCount();
+    for(int i=0;i<fila;i++){
+        tmp.removeRow(0);
+    }
+    }
+    private void LimpiarClienteventa(){
+        txtRucVenta.setText("");
+        txtNombreClienteVenta.setText("");
+        txtTelefonoClienteVenta.setText("");
+        txtDireccionClienteVenta.setText("");
+        txtRazonClienteVenta.setText("");
     }
 }
