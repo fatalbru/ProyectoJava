@@ -33,25 +33,27 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="-1" height="560"/>
+          <AbsoluteConstraints x="0" y="0" width="180" height="560"/>
         </Constraint>
       </Constraints>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel2" max="32767" attributes="0"/>
-                      <Component id="btnClientes" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnProveedor" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnProductos" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnVentas" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnConfig" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnNuevaVenta" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnConfig" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnVentas" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnProductos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnProveedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnClientes" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnNuevaVenta" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -155,7 +157,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="100" y="0" width="1000" height="160"/>
+          <AbsoluteConstraints x="170" y="0" width="1000" height="160"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -466,6 +468,9 @@
                   <Image iconType="3" name="/Img/print.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarVentaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -1603,5 +1608,15 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="LabelVendedor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vida Informatico"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="720" y="120" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>
